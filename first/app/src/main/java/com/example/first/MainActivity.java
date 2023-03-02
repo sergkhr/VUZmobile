@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onStartInfo");
         Log.d(TAG, "onStartDebug");
         Log.v(TAG, "onStartVerbose");
-        System.out.println("onStart");
     }
 
     @Override
