@@ -47,5 +47,19 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/relativeBackBtn"
-        tools:srcCompat="@drawable/metodichka" />
+        android:src="@drawable/metodichka" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeBackBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="286dp"
+        android:text="New activity"
+        android:onClick="newActivityActivate"
+        />
 </RelativeLayout>

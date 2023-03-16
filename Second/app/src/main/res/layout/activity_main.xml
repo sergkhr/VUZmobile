@@ -39,6 +39,7 @@
         android:layout_marginTop="173dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="To relative"
+        android:onClick="logClickHandler"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,10 +64,12 @@
         android:layout_height="224dp"
         android:layout_marginStart="37dp"
         android:layout_marginTop="388dp"
+        android:src="@drawable/studying"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.131"
-        tools:srcCompat="@drawable/studying" />
+        android:contentDescription="where is the picture"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
