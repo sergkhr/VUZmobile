@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RelativeFragment">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -24,7 +23,7 @@
             android:text="here's relative" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/textToNewAct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView3"
@@ -39,7 +38,7 @@
             android:id="@+id/relativeBackBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextPersonName3"
+            android:layout_below="@+id/textToNewAct"
             android:layout_alignStart="@+id/textView3"
             android:layout_marginStart="0dp"
             android:layout_marginTop="70dp"
@@ -49,24 +48,21 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:layout_below="@+id/editTextTextPersonName3"
+            android:layout_below="@+id/textToNewAct"
             android:layout_marginStart="65dp"
             android:layout_marginTop="14dp"
             android:layout_toEndOf="@+id/relativeBackBtn"
             android:src="@drawable/metodichka" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/toNewActBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeBackBtn"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="22dp"
             android:layout_marginTop="64dp"
-            android:layout_marginBottom="286dp"
-            android:text="New activity"
             android:onClick="newActivityActivate"
-            />
+            android:text="New activity" />
     </RelativeLayout>
 </FrameLayout>
