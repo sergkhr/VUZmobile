@@ -6,11 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RelativeFragment extends Fragment {
 
@@ -20,7 +22,10 @@ public class RelativeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        Toast.makeText(getActivity(), "RelativeFragment create", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onCreate");
     }
 
     @Override
@@ -33,6 +38,8 @@ public class RelativeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toast.makeText(getActivity(), "RelativeFragment viewCreated", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onViewCreated");
 
         toMainBtn = (Button) getView().findViewById(R.id.relativeBackBtn);
         toNewAct = (Button) getView().findViewById(R.id.toNewActBtn);
@@ -54,5 +61,40 @@ public class RelativeFragment extends Fragment {
                 ((MainActivity) getActivity()).setFragment(new NewActFragment());
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getActivity(), "RelativeFragment start", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getActivity(), "RelativeFragment resume", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(getActivity(), "RelativeFragment pause", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getActivity(), "RelativeFragment stop", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getActivity(), "RelativeFragment destroy", Toast.LENGTH_SHORT).show();
+        Log.d("RelativeFragment", "onDestroy");
     }
 }
