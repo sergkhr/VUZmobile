@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView3"
             android:layout_alignStart="@+id/textView3"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="-32dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name" />
@@ -41,7 +41,7 @@
             android:layout_below="@+id/textToNewAct"
             android:layout_alignStart="@+id/textView3"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="11dp"
             android:text="Back to main" />
 
         <ImageView
@@ -64,5 +64,12 @@
             android:layout_marginTop="64dp"
             android:onClick="newActivityActivate"
             android:text="New activity" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageView3"
+            android:layout_marginTop="-1dp" />
     </RelativeLayout>
 </FrameLayout>
