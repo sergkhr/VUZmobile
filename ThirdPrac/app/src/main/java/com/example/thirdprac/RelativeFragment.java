@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -72,6 +73,14 @@ public class RelativeFragment extends Fragment {
 
         ListView listView = (ListView) getView().findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
+                Log.d("RelativeFragment", "Item " + position + " clicked");
+            }
+        });
     }
 
     @Override

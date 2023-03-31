@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class LinearFragment extends Fragment {
 
@@ -46,6 +50,16 @@ public class LinearFragment extends Fragment {
                 ((MainActivity) getActivity()).setFragment(new MainFragment());
             }
         });
+
+
+        List<ListItem> items = ((MainActivity) getActivity()).generateList(210);
+        RecyclerView itemsList = (RecyclerView) getView().findViewById(R.id.recyclerList);
+        MyRecyclerAdapter adapter = new MyRecyclerAdapter(this.getContext(), items);
+        //choosing layout manager for recycler view
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        itemsList.setLayoutManager(layoutManager);
+
+        itemsList.setAdapter(adapter);
     }
 
     @Override
