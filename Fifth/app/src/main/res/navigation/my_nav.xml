@@ -6,19 +6,6 @@
     app:startDestination="@id/main">
 
     <fragment
-        android:id="@+id/main"
-        android:name="com.example.fifth.second"
-        android:label="fragment_second"
-        tools:layout="@layout/main_fragment" >
-        <action
-            android:id="@+id/action_main_to_first"
-            app:destination="@id/first" />
-        <action
-            android:id="@+id/action_main_to_second"
-            app:destination="@id/second" />
-    </fragment>
-
-    <fragment
         android:id="@+id/second"
         android:name="com.example.fifth.second"
         android:label="fragment_second"
@@ -35,5 +22,17 @@
         <action
             android:id="@+id/action_first_to_main"
             app:destination="@id/main" />
+    </fragment>
+    <fragment
+        android:id="@+id/main"
+        android:name="com.example.fifth.Main"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_first"
+            app:destination="@id/first" />
+        <action
+            android:id="@+id/action_main_to_second"
+            app:destination="@id/second" />
     </fragment>
 </navigation>

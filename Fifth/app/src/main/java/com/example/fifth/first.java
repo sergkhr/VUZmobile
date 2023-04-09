@@ -2,11 +2,16 @@ package com.example.fifth;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +65,29 @@ public class first extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_first, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String income = bundle.getString("input");
+            TextView title = view.findViewById(R.id.first_title);
+            title.setText(income);
+        }
+
+        TextView input = view.findViewById(R.id.first_input);
+        Button backBtn = view.findViewById(R.id.firstBackBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("input", input.getText().toString());
+                NavHostFragment.findNavController(first.this)
+                        .navigate(R.id.action_first_to_main, bundle);
+            }
+        });
     }
 }

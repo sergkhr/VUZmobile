@@ -15,10 +15,10 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link second#newInstance} factory method to
+ * Use the {@link Main#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class second extends Fragment {
+public class Main extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +29,7 @@ public class second extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public second() {
+    public Main() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class second extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment second.
+     * @return A new instance of fragment Main.
      */
     // TODO: Rename and change types and number of parameters
-    public static second newInstance(String param1, String param2) {
-        second fragment = new second();
+    public static Main newInstance(String param1, String param2) {
+        Main fragment = new Main();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,7 @@ public class second extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -74,16 +74,31 @@ public class second extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             String income = bundle.getString("input");
-            TextView title = view.findViewById(R.id.second_title);
+            TextView title = view.findViewById(R.id.main_title);
             title.setText(income);
         }
 
-        Button backBtn = view.findViewById(R.id.secondBackBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        TextView input = view.findViewById(R.id.main_input);
+
+        Button toFirstButton = view.findViewById(R.id.toFirstBtn);
+        toFirstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(second.this)
-                        .navigate(R.id.action_second_to_main);
+                Bundle bundle = new Bundle();
+                bundle.putString("input", input.getText().toString());
+                NavHostFragment.findNavController(Main.this)
+                        .navigate(R.id.action_main_to_first, bundle);
+            }
+        });
+
+        Button toSecondButton = view.findViewById(R.id.toSecondBtn);
+        toSecondButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("input", input.getText().toString());
+                NavHostFragment.findNavController(Main.this)
+                        .navigate(R.id.action_main_to_second, bundle);
             }
         });
     }
