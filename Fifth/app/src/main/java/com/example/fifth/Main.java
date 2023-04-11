@@ -3,6 +3,7 @@ package com.example.fifth;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -128,7 +129,10 @@ public class Main extends Fragment {
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
 
+
             notificationManager.notify(200, builder.build());
+            getActivity().startService(MainActivity.serviceIntent);
+
         }
 
     }
