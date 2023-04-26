@@ -31,6 +31,48 @@
             android:text="Back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/second_title" />
+
+        <EditText
+            android:id="@+id/inputSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/second_title" />
+
+        <Button
+            android:id="@+id/saveExternal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="44dp"
+            android:text="save to external"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondBackBtn" />
+
+        <Button
+            android:id="@+id/readExternal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="84dp"
+            android:text="read from external"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondBackBtn" />
+
+        <TextView
+            android:id="@+id/textFromExternal"
+            android:layout_width="302dp"
+            android:layout_height="158dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/readExternal" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

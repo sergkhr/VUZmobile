@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pr6</string>
+    <string name="notificationButtonString">Show Notification</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="defaultNotificationText">Text</string>
+    <string name="serviceButtonText">Start service</string>
+</resources>

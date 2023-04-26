@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,11 +16,19 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +38,7 @@ import android.widget.TextView;
 public class Main extends Fragment {
 
     private static final String CHANNEL_ID = "notify";
+    private static final String APP_SPECIFIC_FILE_NAME = "myFile.txt";
 
     public Main() {
         // Required empty public constructor
@@ -110,6 +120,55 @@ public class Main extends Fragment {
                 showNotification();
             }
         });
+
+
+        //work with app specific storage
+        Button saveButton = view.findViewById(R.id.saveAppSpecific);
+        TextView inFileText = view.findViewById(R.id.textAppSpecificData);
+        Button readButton = view.findViewById(R.id.readAppSpecific);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = input.getText().toString();
+                File appSpecificFile = new File(getContext().getFilesDir(), APP_SPECIFIC_FILE_NAME);
+
+                if(!appSpecificFile.exists()){
+                    try {
+                        appSpecificFile.createNewFile();
+                    } catch (Exception e) {
+                        Log.e("ERROR", "Error creating file");
+                    }
+                }
+                //write to file
+                try {
+                    FileWriter writer = new FileWriter(appSpecificFile);
+                    writer.write(text);
+                    writer.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        readButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File appSpecificFile = new File(getContext().getFilesDir(), APP_SPECIFIC_FILE_NAME);
+                if(appSpecificFile.exists()){
+                    try {
+                        String fromWhere = appSpecificFile.toString();
+                        FileReader reader = new FileReader(appSpecificFile);
+                        Scanner scanner = new Scanner(reader);
+                        String text = fromWhere + "\n\n" + scanner.nextLine();
+                        inFileText.setText(text);
+                        reader.close();
+                    } catch (Exception e) {
+                        Log.e("ERROR", "Error reading file");
+                    }
+                }
+            }
+        });
     }
 
 
@@ -129,10 +188,7 @@ public class Main extends Fragment {
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
 
-
             notificationManager.notify(200, builder.build());
-            getActivity().startService(MainActivity.serviceIntent);
-
         }
 
     }

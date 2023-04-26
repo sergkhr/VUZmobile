@@ -9,13 +9,9 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    static Intent serviceIntent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        serviceIntent =  new Intent(this, MyNotificationService.class);
 
         setContentView(R.layout.activity_main);
     }
@@ -23,7 +19,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        //stopService(serviceIntent);
     }
 }
