@@ -1,9 +1,12 @@
 package com.example.fifth;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -108,31 +111,11 @@ public class second extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                    android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+                        != android.content.pm.PackageManager.PERMISSION_GRANTED) {
                     File appSpecificFile = new File(Environment.getExternalStorageDirectory(), APP_SPECIFIC_FILE_NAME);
-                    if(!appSpecificFile.exists()){
-                        if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) ==
-                                android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                            try {
-                                appSpecificFile.createNewFile();
-                                try {
-                                    FileWriter writer = new FileWriter(appSpecificFile);
-                                    writer.write(input.getText().toString());
-                                    writer.close();
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            } catch (Exception e) {
-                                Log.e("ERROR", e.toString());
-                            }
-                        }
-                        else{
-                            getActivity().requestPermissions(new String[]{android.Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 0);
-                        }
-                    }
-                    else {
-                        //write to file
+                    try {
+                        appSpecificFile.createNewFile();
                         try {
                             FileWriter writer = new FileWriter(appSpecificFile);
                             writer.write(input.getText().toString());
@@ -140,10 +123,22 @@ public class second extends Fragment {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                    } catch (Exception e) {
+                        Log.e("ERROR", e.toString());
+                    }
+                    //write to file
+                    try {
+                        FileWriter writer = new FileWriter(appSpecificFile);
+                        writer.write(input.getText().toString());
+                        writer.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
                 else{
-                    getActivity().requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                    Log.e("ERROR", "No permission");
+                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
                 }
             }
         });
@@ -151,10 +146,10 @@ public class second extends Fragment {
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+                        != android.content.pm.PackageManager.PERMISSION_GRANTED) {
                     File appSpecificFile = new File(Environment.getExternalStorageDirectory(), APP_SPECIFIC_FILE_NAME);
-                    if(appSpecificFile.exists()){
+                    if (appSpecificFile.exists()) {
                         try {
                             String fromWhere = appSpecificFile.toString();
                             FileReader reader = new FileReader(appSpecificFile);
@@ -168,7 +163,9 @@ public class second extends Fragment {
                     }
                 }
                 else{
-                    getActivity().requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+                    Log.e("ERROR", "No permission");
+                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
                 }
             }
         });
