@@ -1,12 +1,12 @@
 package com.example.fifth;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,35 +14,39 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link first#newInstance} factory method to
+ * Use the {@link Trird#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class first extends Fragment {
+public class Trird extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private static final String MY_SHARED_FILE_NAME = "mySharedFile";
-    private static final String APP_PREFERENCES_NICKNAME = "nickname";
-
-    private SharedPreferences mSettings;
-    
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public first() {
+    public Trird() {
         // Required empty public constructor
     }
 
-
-    public static first newInstance(String param1, String param2) {
-        first fragment = new first();
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment Trird.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static Trird newInstance(String param1, String param2) {
+        Trird fragment = new Trird();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,64 +61,64 @@ public class first extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        mSettings = getActivity().getSharedPreferences(MY_SHARED_FILE_NAME, getContext().MODE_PRIVATE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_trird, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String income = bundle.getString("input");
-            TextView title = view.findViewById(R.id.first_title);
-            title.setText(income);
-        }
-
-        TextView input = view.findViewById(R.id.first_input);
-        Button backBtn = view.findViewById(R.id.firstBackBtn);
+        Button backBtn = view.findViewById(R.id.third_back_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("input", input.getText().toString());
-                NavHostFragment.findNavController(first.this)
-                        .navigate(R.id.action_first_to_main, bundle);
+                NavHostFragment.findNavController(Trird.this)
+                        .navigate(R.id.action_first_to_main, null);
             }
         });
 
+        TextView input = view.findViewById(R.id.third_input);
+        Button saveBtn = view.findViewById(R.id.save_db_btn);
+        Button loadBtn = view.findViewById(R.id.load_db_btn);
+        TextView dbText = view.findViewById(R.id.db_text);
+        Button deleteBtn = view.findViewById(R.id.delete_by_name_btn);
 
-        //working with shared preferences
-        //input already found
-        Button saveBtn = view.findViewById(R.id.save_shared_pref);
-        Button loadBtn = view.findViewById(R.id.load_shared_pref);
-        TextView  sharedPrefText = view.findViewById(R.id.info_from_shared);
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putString(APP_PREFERENCES_NICKNAME, input.getText().toString());
-                editor.apply();
-            }
-        });
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "database")
+                .allowMainThreadQueries()
+                .build();
+        CatDao catDao = db.catDao();
 
         loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSettings.contains(APP_PREFERENCES_NICKNAME)) {
-                    String fromWhere = mSettings.toString();
-                    String info = fromWhere + "\n\n" + mSettings.getString(APP_PREFERENCES_NICKNAME, "");
-                    sharedPrefText.setText(info);
+                List<Cat> cats = catDao.getAll();
+                String text = "The Cats:\n";
+                for (Cat cat : cats) {
+                    text += cat.toString() + "\n";
                 }
+                dbText.setText(text);
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cat cat = new Cat(input.getText().toString());
+                catDao.insertAll(cat);
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cat cat = catDao.findByName(input.getText().toString());
+                catDao.delete(cat);
             }
         });
     }

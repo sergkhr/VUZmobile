@@ -111,6 +111,17 @@ public class Main extends Fragment {
             }
         });
 
+        Button toThirdButton = view.findViewById(R.id.to_third_btn);
+        toThirdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("input", input.getText().toString());
+                NavHostFragment.findNavController(Main.this)
+                        .navigate(R.id.action_main_to_trird, bundle);
+            }
+        });
+
         //notify button
         Button notifyButton = view.findViewById(R.id.notificationBtn);
         //show notification when clicked

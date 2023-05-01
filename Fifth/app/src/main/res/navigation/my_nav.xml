@@ -34,5 +34,17 @@
         <action
             android:id="@+id/action_main_to_second"
             app:destination="@id/second" />
+        <action
+            android:id="@+id/action_main_to_trird"
+            app:destination="@id/trird" />
+    </fragment>
+    <fragment
+        android:id="@+id/trird"
+        android:name="com.example.fifth.Trird"
+        android:label="fragment_trird"
+        tools:layout="@layout/fragment_trird" >
+        <action
+            android:id="@+id/action_trird_to_main"
+            app:destination="@id/main" />
     </fragment>
 </navigation>

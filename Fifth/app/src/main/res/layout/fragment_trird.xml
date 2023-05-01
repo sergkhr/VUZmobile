@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Trird">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/third_back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back" />
+
+        <EditText
+            android:id="@+id/third_input"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="CatName" />
+
+        <Button
+            android:id="@+id/save_db_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="save db" />
+
+        <Button
+            android:id="@+id/load_db_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="load db" />
+
+        <Button
+            android:id="@+id/delete_by_name_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete by name" />
+
+        <TextView
+            android:id="@+id/db_text"
+            android:layout_width="match_parent"
+            android:layout_height="136dp"
+            android:text="TextView" />
+    </LinearLayout>
+</FrameLayout>
