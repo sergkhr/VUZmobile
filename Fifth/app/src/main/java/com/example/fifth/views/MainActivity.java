@@ -1,10 +1,7 @@
-package com.example.fifth.UIPackage;
+package com.example.fifth.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fifth.R;

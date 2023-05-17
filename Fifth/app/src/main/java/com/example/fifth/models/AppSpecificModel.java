@@ -1,6 +1,4 @@
-package com.example.fifth.dataLayerPackage;
-
-import static java.security.AccessController.getContext;
+package com.example.fifth.models;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class AppSpecificRepository {
+public class AppSpecificModel {
     private static final String APP_SPECIFIC_FILE_NAME = "myFile.txt";
 
     public static void writeToFile(String text, Context context) {

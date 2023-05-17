@@ -1,4 +1,4 @@
-package com.example.fifth.dataLayerPackage.roomPackage;
+package com.example.fifth.models.roomPackage;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

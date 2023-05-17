@@ -1,51 +1,43 @@
-package com.example.fifth.UIPackage;
+package com.example.fifth.views;
 
-import android.Manifest;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fifth.models.roomPackage.AppDatabase;
+import com.example.fifth.models.roomPackage.Cat;
+import com.example.fifth.models.roomPackage.CatDao;
 import com.example.fifth.R;
-import com.example.fifth.dataLayerPackage.ExternalStorageRepository;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link second#newInstance} factory method to
+ * Use the {@link Third#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class second extends Fragment {
+public class Third extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public second() {
+    public Third() {
         // Required empty public constructor
     }
 
@@ -55,11 +47,11 @@ public class second extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment second.
+     * @return A new instance of fragment Third.
      */
     // TODO: Rename and change types and number of parameters
-    public static second newInstance(String param1, String param2) {
-        second fragment = new second();
+    public static Third newInstance(String param1, String param2) {
+        Third fragment = new Third();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,47 +72,58 @@ public class second extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_trird, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String income = bundle.getString("input");
-            TextView title = view.findViewById(R.id.second_title);
-            title.setText(income);
-        }
-
-        Button backBtn = view.findViewById(R.id.secondBackBtn);
+        Button backBtn = view.findViewById(R.id.third_back_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(second.this)
-                        .navigate(R.id.action_second_to_main);
+                NavHostFragment.findNavController(Third.this)
+                        .navigate(R.id.action_trird_to_main, null);
             }
         });
 
+        TextView input = view.findViewById(R.id.third_input);
+        Button saveBtn = view.findViewById(R.id.save_db_btn);
+        Button loadBtn = view.findViewById(R.id.load_db_btn);
+        TextView dbText = view.findViewById(R.id.db_text);
+        Button deleteBtn = view.findViewById(R.id.delete_by_name_btn);
 
-        //work with app specific storage
-        Button saveButton = view.findViewById(R.id.saveExternal);
-        TextView inFileText = view.findViewById(R.id.textFromExternal);
-        Button readButton = view.findViewById(R.id.readExternal);
-        TextView input = view.findViewById(R.id.inputSecond);
+        AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "database")
+                .allowMainThreadQueries()
+                .build();
+        CatDao catDao = db.catDao();
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExternalStorageRepository.saveToFile(input.getText().toString(), getActivity());
+                List<Cat> cats = catDao.getAll();
+                String text = "The Cats:\n";
+                for (Cat cat : cats) {
+                    text += cat.toString() + "\n";
+                }
+                dbText.setText(text);
             }
         });
 
-        readButton.setOnClickListener(new View.OnClickListener() {
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inFileText.setText(ExternalStorageRepository.readFromFile(getActivity()));
+                Cat cat = new Cat(input.getText().toString());
+                catDao.insertAll(cat);
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cat cat = catDao.findByName(input.getText().toString());
+                catDao.delete(cat);
             }
         });
     }

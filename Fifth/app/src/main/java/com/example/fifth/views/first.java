@@ -1,6 +1,5 @@
-package com.example.fifth.UIPackage;
+package com.example.fifth.views;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fifth.R;
-import com.example.fifth.dataLayerPackage.SharedPreferencesRepository;
+import com.example.fifth.models.SharedPreferencesModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +59,7 @@ public class first extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        SharedPreferencesRepository.createSharedPreferences(getActivity(), getContext());
+        SharedPreferencesModel.createSharedPreferences(getActivity(), getContext());
     }
 
     @Override
@@ -103,14 +102,14 @@ public class first extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferencesRepository.saveToSharedPreferences(input.getText().toString());
+                SharedPreferencesModel.saveToSharedPreferences(input.getText().toString());
             }
         });
 
         loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPrefText.setText(SharedPreferencesRepository.readFromSharedPreferences());
+                sharedPrefText.setText(SharedPreferencesModel.readFromSharedPreferences());
             }
         });
     }

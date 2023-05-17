@@ -1,4 +1,4 @@
-package com.example.fifth.UIPackage;
+package com.example.fifth.views;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fifth.R;
-import com.example.fifth.dataLayerPackage.AppSpecificRepository;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import com.example.fifth.models.AppSpecificModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -131,6 +124,16 @@ public class Main extends Fragment {
             }
         });
 
+        //to vm button
+        Button toVM = view.findViewById(R.id.toVM_btn);
+        toVM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(Main.this)
+                        .navigate(R.id.action_main_to_nickNameFirst);
+            }
+        });
+
 
         //work with app specific storage
         Button saveButton = view.findViewById(R.id.saveAppSpecific);
@@ -141,14 +144,14 @@ public class Main extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = input.getText().toString();
-                AppSpecificRepository.writeToFile(text, getContext());
+                AppSpecificModel.writeToFile(text, getContext());
             }
         });
 
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inFileText.setText(AppSpecificRepository.readFromFile(getContext()));
+                inFileText.setText(AppSpecificModel.readFromFile(getContext()));
             }
         });
     }

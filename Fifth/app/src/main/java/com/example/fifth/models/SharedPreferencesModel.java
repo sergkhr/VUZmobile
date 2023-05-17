@@ -1,4 +1,4 @@
-package com.example.fifth.dataLayerPackage;
+package com.example.fifth.models;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-public class SharedPreferencesRepository {
+public class SharedPreferencesModel {
     private static final String MY_SHARED_FILE_NAME = "mySharedFile";
     private static final String APP_PREFERENCES_NICKNAME = "nickname";
 

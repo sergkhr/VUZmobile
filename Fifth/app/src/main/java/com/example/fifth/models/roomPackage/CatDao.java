@@ -1,4 +1,4 @@
-package com.example.fifth.dataLayerPackage.roomPackage;
+package com.example.fifth.models.roomPackage;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

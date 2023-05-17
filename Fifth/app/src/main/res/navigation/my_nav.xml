@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/second"
-        android:name="com.example.fifth.UIPackage.second"
+        android:name="com.example.fifth.views.second"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/first"
-        android:name="com.example.fifth.UIPackage.first"
+        android:name="com.example.fifth.views.first"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/main"
-        android:name="com.example.fifth.UIPackage.Main"
+        android:name="com.example.fifth.views.Main"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -37,14 +37,26 @@
         <action
             android:id="@+id/action_main_to_trird"
             app:destination="@id/trird" />
+        <action
+            android:id="@+id/action_main_to_nickNameFirst"
+            app:destination="@id/nickNameFirst" />
     </fragment>
     <fragment
         android:id="@+id/trird"
-        android:name="com.example.fifth.UIPackage.Third"
+        android:name="com.example.fifth.views.Third"
         android:label="fragment_trird"
         tools:layout="@layout/fragment_trird" >
         <action
             android:id="@+id/action_trird_to_main"
+            app:destination="@id/main" />
+    </fragment>
+    <fragment
+        android:id="@+id/nickNameFirst"
+        android:name="com.example.fifth.views.NickNameFirst"
+        android:label="fragment_nick_name_first"
+        tools:layout="@layout/fragment_nick_name_first" >
+        <action
+            android:id="@+id/action_nickNameFirst_to_main"
             app:destination="@id/main" />
     </fragment>
 </navigation>

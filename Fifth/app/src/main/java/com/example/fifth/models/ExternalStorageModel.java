@@ -1,4 +1,4 @@
-package com.example.fifth.dataLayerPackage;
+package com.example.fifth.models;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ExternalStorageRepository {
+public class ExternalStorageModel {
     private static final String EXTERNAL_STORAGE_FILE_NAME = "myFile.txt";
 
     public static void saveToFile(String data, Activity activity){
