@@ -1,4 +1,4 @@
-package com.example.fifth;
+package com.example.fifth.UIPackage;
 
 import android.Manifest;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.fifth.R;
+import com.example.fifth.dataLayerPackage.ExternalStorageRepository;
 
 import java.io.File;
 import java.io.FileReader;
@@ -37,7 +39,7 @@ public class second extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private static final String APP_SPECIFIC_FILE_NAME = "myFile.txt";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -111,62 +113,14 @@ public class second extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
-                        != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                    File appSpecificFile = new File(Environment.getExternalStorageDirectory(), APP_SPECIFIC_FILE_NAME);
-                    try {
-                        appSpecificFile.createNewFile();
-                        try {
-                            FileWriter writer = new FileWriter(appSpecificFile);
-                            writer.write(input.getText().toString());
-                            writer.close();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    } catch (Exception e) {
-                        Log.e("ERROR", e.toString());
-                    }
-                    //write to file
-                    try {
-                        FileWriter writer = new FileWriter(appSpecificFile);
-                        writer.write(input.getText().toString());
-                        writer.close();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                else{
-                    Log.e("ERROR", "No permission");
-                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                    startActivity(intent);
-                }
+                ExternalStorageRepository.saveToFile(input.getText().toString(), getActivity());
             }
         });
 
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.MANAGE_EXTERNAL_STORAGE)
-                        != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                    File appSpecificFile = new File(Environment.getExternalStorageDirectory(), APP_SPECIFIC_FILE_NAME);
-                    if (appSpecificFile.exists()) {
-                        try {
-                            String fromWhere = appSpecificFile.toString();
-                            FileReader reader = new FileReader(appSpecificFile);
-                            Scanner scanner = new Scanner(reader);
-                            String text = fromWhere + "\n\n" + scanner.nextLine();
-                            inFileText.setText(text);
-                            reader.close();
-                        } catch (Exception e) {
-                            Log.e("ERROR", "Error reading file");
-                        }
-                    }
-                }
-                else{
-                    Log.e("ERROR", "No permission");
-                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                    startActivity(intent);
-                }
+                inFileText.setText(ExternalStorageRepository.readFromFile(getActivity()));
             }
         });
     }

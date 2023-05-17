@@ -1,4 +1,4 @@
-package com.example.fifth;
+package com.example.fifth.UIPackage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
@@ -6,6 +6,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.fifth.R;
 
 public class MainActivity extends AppCompatActivity {
 

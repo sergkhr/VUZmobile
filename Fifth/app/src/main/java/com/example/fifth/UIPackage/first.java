@@ -1,4 +1,4 @@
-package com.example.fifth;
+package com.example.fifth.UIPackage;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fifth.R;
+import com.example.fifth.dataLayerPackage.SharedPreferencesRepository;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link first#newInstance} factory method to
@@ -26,10 +29,9 @@ public class first extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private static final String MY_SHARED_FILE_NAME = "mySharedFile";
-    private static final String APP_PREFERENCES_NICKNAME = "nickname";
 
-    private SharedPreferences mSettings;
+
+
     
 
     // TODO: Rename and change types of parameters
@@ -58,7 +60,7 @@ public class first extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        mSettings = getActivity().getSharedPreferences(MY_SHARED_FILE_NAME, getContext().MODE_PRIVATE);
+        SharedPreferencesRepository.createSharedPreferences(getActivity(), getContext());
     }
 
     @Override
@@ -101,20 +103,14 @@ public class first extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putString(APP_PREFERENCES_NICKNAME, input.getText().toString());
-                editor.apply();
+                SharedPreferencesRepository.saveToSharedPreferences(input.getText().toString());
             }
         });
 
         loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSettings.contains(APP_PREFERENCES_NICKNAME)) {
-                    String fromWhere = mSettings.toString();
-                    String info = fromWhere + "\n\n" + mSettings.getString(APP_PREFERENCES_NICKNAME, "");
-                    sharedPrefText.setText(info);
-                }
+                sharedPrefText.setText(SharedPreferencesRepository.readFromSharedPreferences());
             }
         });
     }

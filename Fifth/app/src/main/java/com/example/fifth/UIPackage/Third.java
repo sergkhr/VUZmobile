@@ -1,4 +1,4 @@
-package com.example.fifth;
+package com.example.fifth.UIPackage;
 
 import android.os.Bundle;
 
@@ -14,14 +14,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fifth.dataLayerPackage.roomPackage.AppDatabase;
+import com.example.fifth.dataLayerPackage.roomPackage.Cat;
+import com.example.fifth.dataLayerPackage.roomPackage.CatDao;
+import com.example.fifth.R;
+
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Trird#newInstance} factory method to
+ * Use the {@link Third#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Trird extends Fragment {
+public class Third extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +37,7 @@ public class Trird extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Trird() {
+    public Third() {
         // Required empty public constructor
     }
 
@@ -42,11 +47,11 @@ public class Trird extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Trird.
+     * @return A new instance of fragment Third.
      */
     // TODO: Rename and change types and number of parameters
-    public static Trird newInstance(String param1, String param2) {
-        Trird fragment = new Trird();
+    public static Third newInstance(String param1, String param2) {
+        Third fragment = new Third();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,8 +83,8 @@ public class Trird extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(Trird.this)
-                        .navigate(R.id.action_first_to_main, null);
+                NavHostFragment.findNavController(Third.this)
+                        .navigate(R.id.action_trird_to_main, null);
             }
         });
 

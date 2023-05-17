@@ -1,10 +1,8 @@
-package com.example.fifth;
+package com.example.fifth.UIPackage;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +14,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.fifth.R;
+import com.example.fifth.dataLayerPackage.AppSpecificRepository;
 
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +38,6 @@ import java.util.Scanner;
 public class Main extends Fragment {
 
     private static final String CHANNEL_ID = "notify";
-    private static final String APP_SPECIFIC_FILE_NAME = "myFile.txt";
 
     public Main() {
         // Required empty public constructor
@@ -142,42 +141,14 @@ public class Main extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = input.getText().toString();
-                File appSpecificFile = new File(getContext().getFilesDir(), APP_SPECIFIC_FILE_NAME);
-
-                if(!appSpecificFile.exists()){
-                    try {
-                        appSpecificFile.createNewFile();
-                    } catch (Exception e) {
-                        Log.e("ERROR", "Error creating file");
-                    }
-                }
-                //write to file
-                try {
-                    FileWriter writer = new FileWriter(appSpecificFile);
-                    writer.write(text);
-                    writer.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                AppSpecificRepository.writeToFile(text, getContext());
             }
         });
 
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File appSpecificFile = new File(getContext().getFilesDir(), APP_SPECIFIC_FILE_NAME);
-                if(appSpecificFile.exists()){
-                    try {
-                        String fromWhere = appSpecificFile.toString();
-                        FileReader reader = new FileReader(appSpecificFile);
-                        Scanner scanner = new Scanner(reader);
-                        String text = fromWhere + "\n\n" + scanner.nextLine();
-                        inFileText.setText(text);
-                        reader.close();
-                    } catch (Exception e) {
-                        Log.e("ERROR", "Error reading file");
-                    }
-                }
+                inFileText.setText(AppSpecificRepository.readFromFile(getContext()));
             }
         });
     }
