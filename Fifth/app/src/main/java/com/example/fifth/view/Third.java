@@ -1,4 +1,4 @@
-package com.example.fifth.views;
+package com.example.fifth.view;
 
 import android.os.Bundle;
 
@@ -84,7 +84,7 @@ public class Third extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(Third.this)
-                        .navigate(R.id.action_trird_to_main, null);
+                        .navigate(R.id.action_third_to_main, null);
             }
         });
 

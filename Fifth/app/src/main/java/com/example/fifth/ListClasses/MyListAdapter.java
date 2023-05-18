@@ -35,7 +35,7 @@ public class MyListAdapter extends ArrayAdapter<ListItem> {
 
         ListItem item = items.get(position);
 
-        number.setText(item.getNumber());
+        number.setText(Integer.toString(item.getNumber()));
         text.setText(item.getText());
 
         return convertView;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.NickNameFirst">
+    tools:context=".view.NickNameThird">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,20 +11,27 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/VM_to_main_btn"
+            android:id="@+id/VM_third_back_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="back to main" />
+            android:text="back" />
 
         <Button
-            android:id="@+id/VM_first_next_btn"
+            android:id="@+id/VM_third_next_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="next" />
 
-        <ListView
-            android:id="@+id/VM_first_list"
+        <Button
+            android:id="@+id/VM_third_add_random_btn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="add random" />
+
+        <TextView
+            android:id="@+id/VM_third_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
     </LinearLayout>
 </FrameLayout>

@@ -3,53 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Third">
+    tools:context=".view.NickNameSecond">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/third_back_btn"
+            android:id="@+id/VM_second_back_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="back" />
 
-        <EditText
-            android:id="@+id/third_input"
+        <Button
+            android:id="@+id/VM_second_next_btn"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="wrap_content"
+            android:text="next" />
+
+        <EditText
+            android:id="@+id/VM_second_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="CatName" />
+            android:text="Name" />
 
         <Button
-            android:id="@+id/save_db_btn"
+            android:id="@+id/VM_second_add_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save db" />
-
-        <Button
-            android:id="@+id/load_db_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="load db" />
-
-        <Button
-            android:id="@+id/delete_by_name_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="delete by name" />
+            android:text="add to list" />
 
         <TextView
-            android:id="@+id/db_text"
+            android:id="@+id/VM_second_text"
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:text="TextView" />
+            android:layout_height="wrap_content"
+            android:text="last added" />
     </LinearLayout>
 </FrameLayout>

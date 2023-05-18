@@ -1,4 +1,4 @@
-package com.example.fifth.views;
+package com.example.fifth.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 

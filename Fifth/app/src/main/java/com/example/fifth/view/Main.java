@@ -1,4 +1,4 @@
-package com.example.fifth.views;
+package com.example.fifth.view;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -110,7 +110,7 @@ public class Main extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("input", input.getText().toString());
                 NavHostFragment.findNavController(Main.this)
-                        .navigate(R.id.action_main_to_trird, bundle);
+                        .navigate(R.id.action_main_to_third, bundle);
             }
         });
 
