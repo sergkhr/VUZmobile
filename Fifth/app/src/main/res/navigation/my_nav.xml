@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_nickNameFirst_to_nickNameSecond"
             app:destination="@id/nickNameSecond" />
+        <action
+            android:id="@+id/action_nickNameFirst_to_nickNameFifth"
+            app:destination="@id/nickNameFifth" />
     </fragment>
     <fragment
         android:id="@+id/nickNameSecond"
@@ -85,9 +88,6 @@
         <action
             android:id="@+id/action_nickNameFourth_to_nickNameThird"
             app:destination="@id/nickNameThird" />
-        <action
-            android:id="@+id/action_nickNameFourth_to_nickNameFifth"
-            app:destination="@id/nickNameFifth" />
     </fragment>
     <fragment
         android:id="@+id/nickNameFifth"
@@ -95,8 +95,8 @@
         android:label="fragment_nick_name_fifth"
         tools:layout="@layout/fragment_nick_name_fifth" >
         <action
-            android:id="@+id/action_nickNameFifth_to_nickNameFourth"
-            app:destination="@id/nickNameFourth" />
+            android:id="@+id/action_nickNameFifth_to_nickNameFirst"
+            app:destination="@id/nickNameFirst" />
     </fragment>
     <fragment
         android:id="@+id/third"

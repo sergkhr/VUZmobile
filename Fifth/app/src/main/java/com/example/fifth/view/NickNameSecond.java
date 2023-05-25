@@ -48,7 +48,7 @@ public class NickNameSecond extends Fragment {
                 textView.setText("no nicknames added yet");
             }
             else{
-                String text = "last added nickname:\n\n" + nickNamesModel.getNickNames()[nickNamesModel.getNickNames().length - 1].getText();
+                String text = "last added nickname:\n\n" + nickNamesModel.getNickNames()[nickNamesModel.getNickNames().length - 1].getName();
                 textView.setText(text);
             }
         });

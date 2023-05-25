@@ -5,9 +5,69 @@
     android:layout_height="match_parent"
     tools:context=".view.NickNameFifth">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/VM_element_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="48sp" />
+
+            <TextView
+                android:id="@+id/VM_element_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="Name"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/VM_element_desc_text"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Current description:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/VM_element_description"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:text="description"
+            android:textColor="#9C27B0"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/VM_element_update_description_btn"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text="Update description"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/VM_element_input"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="New description"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/VM_element_back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:text="back"
+            android:textSize="20sp" />
+    </LinearLayout>
 </FrameLayout>

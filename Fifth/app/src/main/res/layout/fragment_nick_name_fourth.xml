@@ -5,9 +5,42 @@
     android:layout_height="match_parent"
     tools:context=".view.NickNameFourth">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/VM_fourth_back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+
+        <TextView
+            android:id="@+id/VM_fourth_instruction_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insert id to delete from list"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/VM_fourth_input"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:inputType="numberDecimal"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/VM_fourth_delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete" />
+
+        <TextView
+            android:id="@+id/VM_fourth_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last operation status"
+            android:textSize="24sp" />
+    </LinearLayout>
 </FrameLayout>

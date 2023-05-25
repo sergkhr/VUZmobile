@@ -32,6 +32,7 @@
             android:id="@+id/VM_third_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Last added"
+            android:textSize="24sp" />
     </LinearLayout>
 </FrameLayout>

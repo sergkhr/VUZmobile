@@ -49,7 +49,13 @@ public class NickNameFirst extends Fragment {
             MyListAdapter adapter = new MyListAdapter(getActivity(), R.layout.list_item_layout, Arrays.asList(nickNamesModel.getNickNames()));
             ListView listView = (ListView) getView().findViewById(R.id.VM_first_list);
             listView.setAdapter(adapter);
-            //Log.d("firstVM", "onViewCreated: " + nickNamesModel.getNickNames().length);
+
+            listView.setOnItemClickListener((parent, view1, position, id) -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("index", position);
+                NavHostFragment.findNavController(NickNameFirst.this)
+                        .navigate(R.id.action_nickNameFirst_to_nickNameFifth, bundle);
+            });
         });
 
         Button backBtn = view.findViewById(R.id.VM_to_main_btn);

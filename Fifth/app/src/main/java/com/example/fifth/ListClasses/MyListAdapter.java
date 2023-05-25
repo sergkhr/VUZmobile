@@ -1,12 +1,10 @@
 package com.example.fifth.ListClasses;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fifth.R;
@@ -36,7 +34,7 @@ public class MyListAdapter extends ArrayAdapter<ListItem> {
         ListItem item = items.get(position);
 
         number.setText(Integer.toString(item.getNumber()));
-        text.setText(item.getText());
+        text.setText(item.getName());
 
         return convertView;
     }
