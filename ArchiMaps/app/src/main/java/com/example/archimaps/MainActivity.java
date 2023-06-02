@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final String MAPKIT_API_KEY = "9807ec5d-36cb-413f-86df-83a4540b8be5";
 
+    //вопрос в поддержку яндекса будет на почте под номером 23060211205872384
+
     private MapView mapView;
 
     @Override
